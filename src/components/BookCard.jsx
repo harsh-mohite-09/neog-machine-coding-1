@@ -1,5 +1,6 @@
 import React from "react";
 import { useAppContext } from "../context/AppContextProvider";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const BookCard = ({ book }) => {
   const { dispatch } = useAppContext();
@@ -13,16 +14,21 @@ const BookCard = ({ book }) => {
       <img src={book.img} alt="" />
       <h2>{book.name}</h2>
       <p>{book.author}</p>
-      <select
-        name="shelf"
-        value={book.shelf}
-        onChange={(e) => shelfChangeHandler(e, book._id)}
-      >
-        <option value="none">None</option>
-        <option value="currentlyReading">Currently Reading</option>
-        <option value="wantToRead">Want to Read</option>
-        <option value="read">Read</option>
-      </select>
+      <FormControl size="small">
+        <InputLabel id="shelf-label">Shelf</InputLabel>
+        <Select
+          labelId="shelf-label"
+          id="select"
+          value={book.shelf}
+          label="Shelf"
+          onChange={(e) => shelfChangeHandler(e, book._id)}
+        >
+          <MenuItem value="none">None</MenuItem>
+          <MenuItem value="currentlyReading">Currently Reading</MenuItem>
+          <MenuItem value="wantToRead">Want to Read</MenuItem>
+          <MenuItem value="read">Read</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 };
