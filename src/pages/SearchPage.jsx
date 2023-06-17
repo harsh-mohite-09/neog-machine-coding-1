@@ -45,9 +45,13 @@ const SearchPage = () => {
         </div>
       </div>
       <div className="search-books-container">
-        {showSearchedBooks.map((book) => (
-          <BookCard key={book._id} book={book} />
-        ))}
+        {searchText.length === 0 && <h2>Type in search</h2>}
+        {showSearchedBooks.length === 0 && <h2>No books found!</h2>}
+        {searchText.length > 0 &&
+          showSearchedBooks.length > 0 &&
+          showSearchedBooks.map((book) => (
+            <BookCard key={book._id} book={book} />
+          ))}
       </div>
     </main>
   );
